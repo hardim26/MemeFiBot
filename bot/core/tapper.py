@@ -102,7 +102,8 @@ class Tapper:
 
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error during Authorization: {error}")
-            await asyncio.sleep(delay=3)
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
     async def get_access_token(self, http_client: aiohttp.ClientSession, tg_web_data: dict[str]):
         for _ in range(5):
@@ -118,13 +119,15 @@ class Tapper:
                 access_token = response_json.get('data', {}).get('telegramUserLogin', {}).get('access_token', '')
 
                 if not access_token:
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
                     continue
 
                 return access_token
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while getting Access Token: {error}")
-                await asyncio.sleep(delay=3)
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
         return ""
 
@@ -149,7 +152,8 @@ class Tapper:
             return me
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error while getting Telegram Me: {error}")
-            await asyncio.sleep(delay=3)
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             return {}
 
@@ -173,13 +177,15 @@ class Tapper:
                 profile_data = response_json.get('data', {}).get('telegramGameGetConfig', {})
 
                 if not profile_data:
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
                     continue
 
                 return profile_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while getting Profile Data: {error}")
-                await asyncio.sleep(delay=3)
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
         return {}
 
@@ -203,13 +209,15 @@ class Tapper:
                 bot_config = response_json.get('data', {}).get('telegramGameTapbotGetConfig', {})
 
                 if not bot_config:
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
                     continue
 
                 return bot_config
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while getting TapBot Data: {error}")
-                await asyncio.sleep(delay=3)
+                tm = random.randint(3, 7)                     
+                await asyncio.sleep(delay=tm)
 
         return {}
 
@@ -233,13 +241,15 @@ class Tapper:
                 start_data = response_json['data']['telegramGameTapbotStart']
 
                 if not start_data:
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
                     continue
 
                 return start_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while Starting Bot: {error}")
-                await asyncio.sleep(delay=3)
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
         return None
 
@@ -263,13 +273,15 @@ class Tapper:
                 claim_data = response_json.get('data', {}).get('telegramGameTapbotClaimCoins', {})
 
                 if not claim_data:
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
                     continue
 
                 return claim_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while Claiming Bot: {error}")
-                await asyncio.sleep(delay=3)
+                tm = random.randint(3, 7)                     
+                await asyncio.sleep(delay=tm)
 
         return {}
 
@@ -289,7 +301,8 @@ class Tapper:
             return True
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error while Setting Next Boss: {error}")
-            await asyncio.sleep(delay=3)
+            tm = random.randint(3, 7)                     
+            await asyncio.sleep(delay=tm)
 
             return False
 
@@ -314,7 +327,8 @@ class Tapper:
             return True
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error while Apply {boost_type} Boost: {error}")
-            await asyncio.sleep(delay=3)
+            tm = random.randint(3, 7)                     
+            await asyncio.sleep(delay=tm)
 
             return False
 
@@ -392,13 +406,15 @@ class Tapper:
                 profile_data = response_json.get('data', {}).get('telegramGameProcessTapsBatch', {})
 
                 if not profile_data:
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)                     
+                    await asyncio.sleep(delay=tm)
                     continue
 
                 return profile_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error when Tapping: {error}")
-                await asyncio.sleep(delay=3)
+                tm = random.randint(3, 7)                     
+                await asyncio.sleep(delay=tm)
 
         return {}
 
@@ -706,7 +722,8 @@ class Tapper:
 
                 except Exception as error:
                     logger.error(f"{self.session_name} | ❗️ Unknown error: {error}")
-                    await asyncio.sleep(delay=3)
+                    tm = random.randint(3, 7)                     
+                    await asyncio.sleep(delay=tm)
 
                 else:
                     sleep_between_clicks = randint(a=settings.SLEEP_BETWEEN_TAP[0], b=settings.SLEEP_BETWEEN_TAP[1])
