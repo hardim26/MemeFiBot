@@ -40,7 +40,7 @@
 ## Установка
 Вы можете скачать [**Репозиторий**](https://github.com/shamhi/MemeFiBot) клонированием на вашу систему и установкой необходимых зависимостей:
 ```shell
-~ >>> git clone https://github.com/shamhi/MemeFiBot.git 
+~ >>> git clone https://github.com/hardim26/MemeFiBot.git 
 ~ >>> cd MemeFiBot
 
 # Linux
