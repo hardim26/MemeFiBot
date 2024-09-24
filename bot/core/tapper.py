@@ -47,6 +47,8 @@ class Tapper:
         try:
             if not self.tg_client.is_connected:
                 try:
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
                     await self.tg_client.connect()
                 except (Unauthorized, UserDeactivated, AuthKeyUnregistered):
                     raise InvalidSession(self.session_name)
@@ -58,6 +60,8 @@ class Tapper:
                 from_bot_menu=False,
                 url='https://tg-app.memefi.club/game'
             ))
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             auth_url = web_view.url
             tg_web_data = unquote(
@@ -70,6 +74,8 @@ class Tapper:
             hash_ = tg_web_data.split('hash=', maxsplit=1)[1]
 
             me = await self.tg_client.get_me()
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             json_data = {
                 'operationName': OperationName.MutationTelegramUserLogin,
