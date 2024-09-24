@@ -47,7 +47,7 @@ class Tapper:
         try:
             if not self.tg_client.is_connected:
                 try:
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
                     await self.tg_client.connect()
                 except (Unauthorized, UserDeactivated, AuthKeyUnregistered):
@@ -60,7 +60,7 @@ class Tapper:
                 from_bot_menu=False,
                 url='https://tg-app.memefi.club/game'
             ))
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             auth_url = web_view.url
@@ -74,7 +74,7 @@ class Tapper:
             hash_ = tg_web_data.split('hash=', maxsplit=1)[1]
 
             me = await self.tg_client.get_me()
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             json_data = {
@@ -100,7 +100,7 @@ class Tapper:
 
             if self.tg_client.is_connected:
                 await self.tg_client.disconnect()
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
             return json_data
@@ -110,7 +110,7 @@ class Tapper:
 
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error during Authorization: {error}")
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
     async def get_access_token(self, http_client: aiohttp.ClientSession, tg_web_data: dict[str]):
@@ -127,14 +127,14 @@ class Tapper:
                 access_token = response_json.get('data', {}).get('telegramUserLogin', {}).get('access_token', '')
 
                 if not access_token:
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
                     continue
 
                 return access_token
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while getting Access Token: {error}")
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
         return ""
@@ -156,13 +156,13 @@ class Tapper:
                 raise InvalidProtocol(f'get_telegram_me msg: {response_json["errors"][0]["message"]}')
 
             me = response_json['data']['telegramUserMe']
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             return me
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error while getting Telegram Me: {error}")
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             return {}
@@ -180,25 +180,25 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'get_profile_data msg: {response_json["errors"][0]["message"]}')
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
 
                 profile_data = response_json.get('data', {}).get('telegramGameGetConfig', {})
 
                 if not profile_data:
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
                     continue
 
                 return profile_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while getting Profile Data: {error}")
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
         return {}
@@ -216,7 +216,7 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
@@ -225,14 +225,14 @@ class Tapper:
                 bot_config = response_json.get('data', {}).get('telegramGameTapbotGetConfig', {})
 
                 if not bot_config:
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
                     continue
 
                 return bot_config
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while getting TapBot Data: {error}")
-                tm = random.randint(3, 7)                     
+                tm = randint(3, 7)                     
                 await asyncio.sleep(delay=tm)
 
         return {}
@@ -250,25 +250,25 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'start_bot msg: {response_json["errors"][0]["message"]}')
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
 
                 start_data = response_json['data']['telegramGameTapbotStart']
 
                 if not start_data:
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
                     continue
 
                 return start_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while Starting Bot: {error}")
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
         return None
@@ -286,25 +286,25 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'claim_bot msg: {response_json["errors"][0]["message"]}')
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
 
                 claim_data = response_json.get('data', {}).get('telegramGameTapbotClaimCoins', {})
 
                 if not claim_data:
-                    tm = random.randint(3, 7)
+                    tm = randint(3, 7)
                     await asyncio.sleep(delay=tm)
                     continue
 
                 return claim_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error while Claiming Bot: {error}")
-                tm = random.randint(3, 7)                     
+                tm = randint(3, 7)                     
                 await asyncio.sleep(delay=tm)
 
         return {}
@@ -321,13 +321,13 @@ class Tapper:
             response.raise_for_status()
 
             response_json = await response.json()
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             return True
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error while Setting Next Boss: {error}")
-            tm = random.randint(3, 7)                     
+            tm = randint(3, 7)                     
             await asyncio.sleep(delay=tm)
 
             return False
@@ -346,18 +346,18 @@ class Tapper:
             response.raise_for_status()
 
             response_json = await response.json()
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             if 'errors' in response_json:
                 raise InvalidProtocol(f'apply_boost msg: {response_json["errors"][0]["message"]}')
-                tm = random.randint(3, 7)
+                tm = randint(3, 7)
                 await asyncio.sleep(delay=tm)
 
             return True
         except Exception as error:
             logger.error(f"{self.session_name} | ❗️ Unknown error while Apply {boost_type} Boost: {error}")
-            tm = random.randint(3, 7)                     
+            tm = randint(3, 7)                     
             await asyncio.sleep(delay=tm)
 
             return False
@@ -395,7 +395,7 @@ class Tapper:
             response.raise_for_status()
 
             response_json = await response.json()
-            tm = random.randint(3, 7)
+            tm = randint(3, 7)
             await asyncio.sleep(delay=tm)
 
             if 'errors' in response_json:
@@ -438,14 +438,14 @@ class Tapper:
                 profile_data = response_json.get('data', {}).get('telegramGameProcessTapsBatch', {})
 
                 if not profile_data:
-                    tm = random.randint(3, 7)                     
+                    tm = randint(3, 7)                     
                     await asyncio.sleep(delay=tm)
                     continue
 
                 return profile_data
             except Exception as error:
                 logger.error(f"{self.session_name} | ❗️ Unknown error when Tapping: {error}")
-                tm = random.randint(3, 7)                     
+                tm = randint(3, 7)                     
                 await asyncio.sleep(delay=tm)
 
         return {}
@@ -754,7 +754,7 @@ class Tapper:
 
                 except Exception as error:
                     logger.error(f"{self.session_name} | ❗️ Unknown error: {error}")
-                    tm = random.randint(3, 7)                     
+                    tm = randint(3, 7)                     
                     await asyncio.sleep(delay=tm)
 
                 else:
