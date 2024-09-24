@@ -100,6 +100,8 @@ class Tapper:
 
             if self.tg_client.is_connected:
                 await self.tg_client.disconnect()
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
             return json_data
 
@@ -154,6 +156,8 @@ class Tapper:
                 raise InvalidProtocol(f'get_telegram_me msg: {response_json["errors"][0]["message"]}')
 
             me = response_json['data']['telegramUserMe']
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             return me
         except Exception as error:
@@ -176,9 +180,13 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'get_profile_data msg: {response_json["errors"][0]["message"]}')
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
 
                 profile_data = response_json.get('data', {}).get('telegramGameGetConfig', {})
 
@@ -208,6 +216,8 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'get_bot_config msg: {response_json["errors"][0]["message"]}')
@@ -240,9 +250,13 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'start_bot msg: {response_json["errors"][0]["message"]}')
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
 
                 start_data = response_json['data']['telegramGameTapbotStart']
 
@@ -272,9 +286,13 @@ class Tapper:
                 response.raise_for_status()
 
                 response_json = await response.json()
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
                 if 'errors' in response_json:
                     raise InvalidProtocol(f'claim_bot msg: {response_json["errors"][0]["message"]}')
+                    tm = random.randint(3, 7)
+                    await asyncio.sleep(delay=tm)
 
                 claim_data = response_json.get('data', {}).get('telegramGameTapbotClaimCoins', {})
 
@@ -303,6 +321,8 @@ class Tapper:
             response.raise_for_status()
 
             response_json = await response.json()
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             return True
         except Exception as error:
@@ -326,9 +346,13 @@ class Tapper:
             response.raise_for_status()
 
             response_json = await response.json()
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             if 'errors' in response_json:
                 raise InvalidProtocol(f'apply_boost msg: {response_json["errors"][0]["message"]}')
+                tm = random.randint(3, 7)
+                await asyncio.sleep(delay=tm)
 
             return True
         except Exception as error:
@@ -371,6 +395,8 @@ class Tapper:
             response.raise_for_status()
 
             response_json = await response.json()
+            tm = random.randint(3, 7)
+            await asyncio.sleep(delay=tm)
 
             if 'errors' in response_json:
                 raise InvalidProtocol(f'upgrade_boost msg: {response_json["errors"][0]["message"]}')
