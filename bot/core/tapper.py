@@ -535,7 +535,8 @@ class Tapper:
 
                         logger.info(f"{self.session_name} | Current boss level: <lm>{current_boss_level:,}</lm> | "
                                     f"Boss health: <lr>{boss_current_health:,}</lr><lw>/</lw><le>{boss_max_health:,}</le>")
-
+                        tm = randint(3, 10)
+                        await asyncio.sleep(delay=tm)
                         await asyncio.sleep(delay=.5)
 
                     spins = profile_data.get('spinEnergyTotal', 0)
@@ -640,6 +641,8 @@ class Tapper:
                         if turbo_boost_count > 0 and settings.APPLY_DAILY_TURBO is True:
                             logger.info(f"{self.session_name} | Sleep <lw>5s</lw> before activating daily turbo boost")
                             await asyncio.sleep(delay=5)
+                            tm = randint(3, 7)                     
+                            await asyncio.sleep(delay=tm)
 
                             status = await self.apply_boost(http_client=http_client, boost_type=FreeBoostType.TURBO)
                             if status is True:
@@ -673,9 +676,10 @@ class Tapper:
                                     ends_at_logged_time = time() + 900
 
                                 if ends_at_timestamp < time():
-                                    logger.info(f"{self.session_name} | Sleep <lw>5s</lw> before claim TapBot")
-                                    await asyncio.sleep(5)
-
+                                    logger.info(f"{self.session_name} | Sleep <lw>9-10s</lw> before claim TapBot")
+                                    tm = randint(8, 10)                     
+                                    await asyncio.sleep(delay=tm)
+                                    
                                     claim_data = await self.claim_bot(http_client=http_client)
                                     if claim_data:
                                         logger.success(f"{self.session_name} | Successfully claimed TapBot")
@@ -693,7 +697,7 @@ class Tapper:
                                     logger.success(f"{self.session_name} | "
                                                    f"Tap upgraded to <lm>{next_tap_level}</lm> lvl")
 
-                                    await asyncio.sleep(delay=1)
+                                    await asyncio.sleep(delay=3)
                             else:
                                 logger.warning(f"{self.session_name} | "
                                                f"Need more gold for upgrade tap to <lm>{next_tap_level}</lm> lvl "
@@ -708,7 +712,7 @@ class Tapper:
                                     logger.success(f"{self.session_name} | "
                                                    f"Energy upgraded to <lm>{next_energy_level}</lm> lvl")
 
-                                    await asyncio.sleep(delay=1)
+                                    await asyncio.sleep(delay=3)
                             else:
                                 logger.warning(f"{self.session_name} | "
                                                f"Need more gold for upgrade energy to <lm>{next_energy_level}</lm> lvl "
@@ -724,7 +728,7 @@ class Tapper:
                                     logger.success(f"{self.session_name} | "
                                                    f"Charge upgraded to <lm>{next_charge_level}</lm> lvl")
 
-                                    await asyncio.sleep(delay=1)
+                                    await asyncio.sleep(delay=3)
                             else:
                                 logger.warning(f"{self.session_name} | "
                                                f"Need more gold for upgrade charge to <lm>{next_energy_level}</lm> lvl "
@@ -747,7 +751,7 @@ class Tapper:
                         raise error
                     else:
                         logger.error(f"{self.session_name} | ⚠ Warning! Invalid protocol detected in {error}")
-                        await asyncio.sleep(delay=randint(a=3, b=7))
+                        await asyncio.sleep(delay=randint(a=6, b=7))
 
                 except InvalidSession as error:
                     raise error
@@ -761,7 +765,7 @@ class Tapper:
                     sleep_between_clicks = randint(a=settings.SLEEP_BETWEEN_TAP[0], b=settings.SLEEP_BETWEEN_TAP[1])
 
                     if active_turbo is True:
-                        sleep_between_clicks = 4
+                        sleep_between_clicks = randint(3, 7)
 
                     logger.info(f"Sleep {sleep_between_clicks}s")
                     await asyncio.sleep(delay=sleep_between_clicks)
